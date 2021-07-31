@@ -2,7 +2,9 @@
 This folder contains trading strategies developed using [QuantConnect Lean dev environemnt](https://www.lean.io/) also see [Lean on Github](https://github.com/QuantConnect/Lean)
 
 ## Preparation of local dev environment
-There are [at least 2 ways](https://github.com/QuantConnect/Lean/blob/master/.vscode/readme.md) to set up local env for Lean development. Arguably, the easiest way to do it, is to set up [Lean CLI](https://github.com/QuantConnect/lean-cli) - this is command line tool that facilitates number of Lean trading strategy development tasks. This is [the original set up instructions](https://www.quantconnect.com/docs/v2/lean-cli/getting-started/lean-cli). You can also follow the steps that I tried locally at my machine:
+There are [at least 2 ways](https://github.com/QuantConnect/Lean/blob/master/.vscode/readme.md) to set up local env for Lean development. Arguably, the easiest way to do it, is to set up [Lean CLI](https://github.com/QuantConnect/lean-cli) - this is command line tool that facilitates number of Lean trading strategy development tasks. For better productivity I suggest using [Git Bash](https://gitforwindows.org/) if you are Windows user.
+
+This is [the original set up instructions](https://www.quantconnect.com/docs/v2/lean-cli/getting-started/lean-cli). You can also follow the steps that I tried locally at my machine:
 1. Ensure you have latest Python3 environment (preferably using Anaconda or direct installation). If you were able to run `pip install --upgrade -r requirements.txt` from the [root README](https://github.com/iskaspb/project-omega#readme) than you are good. If you are not sure you can run this command:
 ```
 $ pip install --upgrade lean

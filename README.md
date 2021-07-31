@@ -33,7 +33,7 @@ $ git clone https://github.com/iskaspb/project-omega.git
 ```
 $ pip install --upgrade -r requirements.txt
 ```
-1. If you are working on a strategy please follow the README instruction
+1. If you are working on a strategy please follow the [strategy README instructions](https://github.com/iskaspb/project-omega/tree/master/src/strategy#readme)
 
 ### Useful dev tools and software packages
 1. VSCode - powerfull source code editor and IDE;
