@@ -18,7 +18,7 @@ This project is greatly influenced by the algo-trading course given by [Shahank 
 1. [Tkachenko Alexey](https://www.linkedin.com/in/tkachenkoalexey/) (Tech Lead)
 1. Qing Hong "Peter" Sum
 
-## Collaboration tools
+## Collaboration and reporting
 * [Time tracking](https://docs.google.com/spreadsheets/d/1goY3e8Pnb7GCFPjv1ocY3dTM-CobUiLo0siKtb2_tVs/edit?usp=sharing)
 * [Meeting Minutes](https://docs.google.com/document/d/1ZUnK5dsIOngHRSNgRD8AuZrsVoigCyxFhxJIKpwJvKw/edit?usp=sharing)
 * [Project report](https://docs.google.com/document/d/1xA0bhG-hIhc7HJPNiOUzs8L8Qvx9Ujgg2xYSss_QrJU/edit)
