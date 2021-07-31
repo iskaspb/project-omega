@@ -10,3 +10,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 .vscode
+src/strategy/lean.json
+src/strategy/data
+src/strategy/*/backtests
+src/strategy/*/__pycache__
