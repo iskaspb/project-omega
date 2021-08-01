@@ -10,6 +10,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 .vscode
+.idea
 src/strategy/lean.json
 src/strategy/data
 src/strategy/*/backtests
