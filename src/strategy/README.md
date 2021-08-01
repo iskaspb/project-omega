@@ -47,3 +47,16 @@ STATISTICS:: Total Fees $3.44
 ```
  $ lean create-project your-strategy-name
 ```
+
+### Example of Git Bash `~/.bashrc` file that simplifies local development
+```
+source ~/.git-completion.bash
+source /c/Users/Alexey/anaconda3/etc/profile.d/conda.sh
+
+alias src='cd ~/fintech/project-omega'
+#this alias does 3 things:
+#1) goes to development folder;
+#2) activate python3 enviroment (with all necessary packages installed in advance);
+#3) does a "lean login" hack by copying saved "credentials.session" file to "credentials" (it contains access token which you need to get from QuantConnect)
+alias dev='echo "go to strategy folder" && cd ~/fintech/project-omega/src/strategy && echo "activate python3 env with Lean CLI" && conda activate py3 && echo "log into QuantConnect" && cp -u ~/.lean/credentials.session ~/.lean/credentials && lean whoami'
+```
