@@ -16,7 +16,7 @@ $ lean init
 ```
 4. So now you are ready to run a local backtest; please run this:
 ```
-$ lean backtest basicStrat
+$ lean backtest HodlSPY
 ```
 You will see an output similar to this:
 ```

@@ -1,5 +1,6 @@
 {
     "algorithm-language": "Python",
     "parameters": {},
-    "description": ""
+    "description": "Long-term Investment \"SPY Rebalance\" strategy",
+    "cloud-id": 8650050
 }
