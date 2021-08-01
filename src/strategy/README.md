@@ -1,5 +1,5 @@
 # QuantConnect trading strategies
-This folder contains trading strategies developed using [QuantConnect Lean dev environemnt](https://www.lean.io/) also see [Lean on Github](https://github.com/QuantConnect/Lean)
+This folder contains trading strategies developed using [QuantConnect Lean dev environemnt](https://www.lean.io/) also see [Lean on Github](https://github.com/QuantConnect/Lean) or learn more about [Lean commands](https://www.lean.io/docs/lean-cli/api-reference/lean-init)
 
 ## Preparation of local dev environment
 There are [at least 2 ways](https://github.com/QuantConnect/Lean/blob/master/.vscode/readme.md) to set up local env for Lean development. Arguably, the easiest way to do it, is to set up [Lean CLI](https://github.com/QuantConnect/lean-cli) - this is command line tool that facilitates number of Lean trading strategy development tasks. For better productivity I suggest using [Git Bash](https://gitforwindows.org/) if you are Windows user.
