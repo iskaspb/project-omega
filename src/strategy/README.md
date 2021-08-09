@@ -48,7 +48,8 @@ STATISTICS:: Total Fees $3.44
  $ lean create-project your-strategy-name
 ```
 6. Getting data from Yahoo Finance for local backtest run
-Initial data folder created by `lean init` contain limited number symbols. If you only do cloud backtest than it's not a problem as complete data is provided by QuantConnect. However for local run you need to populate data folder. One way to do it - is to download data from QuantConnect. However you need to pay. Another option is to get data from Yahoo Finance. I wrote `fetchData.py` script which downloads data from Yahoo Finance, converts the format to QC and put the files into data folder. This script uses configuration file `fetchData.json` to understand what data should be donwloaded and where it should be placed. Example of `fetchData.py` execution:
+
+Initial data folder created by `lean init` contains limited number of symbols. If you only do cloud backtest than it's not a problem as complete data is provided by QuantConnect. However for local run you need to get all required data locally. One way to do it - is to download data from QuantConnect. However you need to pay. Another option is to get data from Yahoo Finance. I wrote [`fetchData.py`](https://github.com/iskaspb/project-omega/blob/master/src/strategy/fetchData.py) script which downloads data from Yahoo Finance; converts the format to QC and puts the files into data folder. This script uses configuration file [`fetchData.json`](https://github.com/iskaspb/project-omega/blob/master/src/strategy/fetchData.json) to understand what data should be donwloaded and where it should be placed. Example of `fetchData.py` execution:
 ```
 Alexey@slava MINGW64 ~/fintech/project-omega/src/strategy (master)
 $ python fetchData.py -ff
