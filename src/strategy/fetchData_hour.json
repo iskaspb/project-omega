@@ -1,0 +1,18 @@
+{
+    "interval" : "1h",
+    "folder" : "data/equity/usa/hour",
+    "period" : {"start": "2020-01-01", "end" : "2021-07-01"},
+    "symbols" : ["SPY"],
+    "strategy" : [
+        {
+            "name" : "MACDTrend",
+            "period" : {"start": "2020-01-01", "end" : "2021-07-01"},
+            "symbols": ["SPY", "AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]
+        },
+        {
+            "name": "SPYRebalance",
+            "period" : {"start": "2020-01-01", "end" : "2021-07-01"},
+            "symbols": ["SPY", "VGT", "VHT", "VCR", "VOX", "VFH", "VIS", "VDC", "VPU", "VAW", "VNQ", "VDE"]
+        }
+    ]
+}

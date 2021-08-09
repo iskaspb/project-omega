@@ -256,10 +256,11 @@ def fetchData(args) -> None:
             def yahooFinanceNumToQuantConnect(yfNum : float) -> int:
                 # 427.209991 -> 4272099
                 return int(yfNum * 10000)
-            logging.debug(f"got data\n{df.head(1)}")
+            logging.debug(f"Got data\n{df.head(2)}\n...")
             df.reset_index(level=0, inplace=True)
 
-            df["QCDate"]  = df["Date"].transform(yahooFinanceDateToQuantConnect)
+            # I use df.columns[0] instead of "Date" because yfinance doesn't always return the same name of the field for different intervals
+            df["QCDate"]  = df[df.columns[0]].transform(yahooFinanceDateToQuantConnect)
             df["QCOpen"]  = df["Open"].transform(yahooFinanceNumToQuantConnect)
             df["QCHigh"]  = df["High"].transform(yahooFinanceNumToQuantConnect)
             df["QCLow"]   = df["Low"].transform(yahooFinanceNumToQuantConnect)
