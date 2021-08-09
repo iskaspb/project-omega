@@ -50,8 +50,8 @@ def initArgparse() -> argparse.ArgumentParser:
     )
 
     parser.add_argument(
-        "-f", "--force", action='store_true', default=False,
-        help="Overwrite existing data files [default=(do not overwrite)]"
+        "-f", "--force", action='count', default=0,
+        help="Overwrite existing data files [default=(skip download if the file exists)]"
     )
 
     parser.add_argument(
@@ -136,9 +136,13 @@ def parseConfig(configJson):
 
     def collectInterval(configJson) -> str:
         if "interval" in configJson:
-            return configJson["interval"]
+            interval = configJson["interval"]
+            acceptedIntervals = ["1h","1d"]
+            if interval not in acceptedIntervals:
+                raise ConfigError("[TopLevel] Config 'interval' field recognized values: {acceptedIntervals}, however '{interval}' found")
+            return interval
         else:
-            raise ConfigError("[TopLevel] Config must contain 'interval' field, possible values : [1m,2m,5m,15m,30m,60m,90m,1h,1d,5d,1wk,1mo,3mo]")
+            raise ConfigError("[TopLevel] Config must contain 'interval' field, possible values : {acceptedIntervals}")
 
     def collectFolder(configJson) -> str:
         if "folder" in configJson:
@@ -183,8 +187,8 @@ def fetchData(args) -> None:
             symbolPath = os.path.join(symbolFolder, symbolFilename)
             symbolStart = symbolConfig["period"]["start"]
             symbolEnd = symbolConfig["period"]["end"]
+            interval = symbolsFetchConfig["interval"]
 
-            shouldReplaceExistingFile = False
             if os.path.exists(symbolPath):
                 if not os.path.isfile(symbolPath):
                     raise Exception(f"Target symbol {symbol} path is not a regular file: {symbolPath}. Please review your data folder structure")
@@ -194,37 +198,60 @@ def fetchData(args) -> None:
                 fileStart = datetime.datetime.strptime(df.iloc[0]['Date'], "%Y%m%d %H:%M")
                 fileEnd = datetime.datetime.strptime(df.iloc[-1]['Date'], "%Y%m%d %H:%M")
 
-                if symbolStart < fileStart or fileEnd < symbolEnd:
+                isIncompleteDataFile = symbolStart < fileStart or fileEnd < symbolEnd
+                if isIncompleteDataFile:
+                    shouldReplaceExistingFile = args.force > 0
                     logMsg = (
                         f"Symbol {symbol} file exists : {symbolPath}. "
                         f"However it doesn't contain required historical period. "
                         f"File dates [{fileStart},{fileEnd}]. "
                         f"Configured dates [{symbolStart},{symbolEnd}].")
                 else:
+                    shouldReplaceExistingFile = args.force > 1
                     logMsg = (
                         f"Symbol {symbol} file exists : {symbolPath}. "
                         f"It contains larger period of histrocal data. "
                         f"File dates [{fileStart},{fileEnd}]. "
                         f"Configured dates [{symbolStart},{symbolEnd}].")
 
-                if args.force:
-                    logging.info(logMsg + " Force override the data file (--force is selected).")
-                    shouldReplaceExistingFile = True
-                else:
-                    logging.warning(logMsg + " Skipping symbol download (you can use --force to enforce it).")
+                if not shouldReplaceExistingFile:
+                    requiredForce = "-f" if isIncompleteDataFile else "-ff"
+                    logMsg += f" Skipping symbol download (you can use {requiredForce} to enforce it)."
+                    if isIncompleteDataFile:
+                        logging.info(logMsg)
+                    else:
+                        logging.debug(logMsg)
                     continue
+            else:
+                shouldReplaceExistingFile = False
 
-            logging.info(f"Downloading {symbol} : {symbolConfig}")
+            def symbolEndAdjustment(interval):
+                # This adjustment is required because:
+                # 1) Yahoo Finance interpret "end" as open range, i.e. [start,end);
+                # 2) Next day (or hour) may not be tradable so we need to more than 1 day or 1 hour
+                if interval == "1d":
+                    return datetime.timedelta(days=7)
+                elif interval == "1h":
+                    return datetime.timedelta(days=1, hours=1)
+                else:
+                    raise Exception(f"Uknonwn interval {interval}")
+
+            symbolEnd += symbolEndAdjustment(interval)
+
+            logging.info(f"Downloading {symbol} : {symbolStart} : {symbolEnd}")
+            logging.getLogger().handlers[0].flush()
             df = yf.download(
                 symbol,
                 start=symbolStart,
                 end=symbolEnd,
-                interval=symbolsFetchConfig["interval"],
+                interval=interval,
                 auto_adjust = True
                 )
+            print("Done")
+            sys.stdout.flush()
+
             def yahooFinanceDateToQuantConnect(yfDate : Timestamp) -> str:
                 # 2021-06-30 -> 20210630 00:00
-                #return yfDate.translate({ord('-'): None}) + " 00:00"
                 return yfDate.strftime("%Y%m%d %H:%M")
             def yahooFinanceNumToQuantConnect(yfNum : float) -> int:
                 # 427.209991 -> 4272099
@@ -255,7 +282,7 @@ def fetchData(args) -> None:
                 os.replace(downloadSymbolPath, symbolPath)
             else:
                 os.rename(downloadSymbolPath, symbolPath)
-
+        logging.info("Data fetch is completed")
 
 
 def main() -> None:
