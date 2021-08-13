@@ -13,4 +13,5 @@ _deps
 .idea
 src/strategy/data
 src/strategy/*/backtests
+src/strategy/*/optimizations
 src/strategy/*/__pycache__

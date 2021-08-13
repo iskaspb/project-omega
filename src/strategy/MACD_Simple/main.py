@@ -1,46 +1,109 @@
+from datetime import datetime
 from clr import AddReference
 AddReference("System")
 AddReference("QuantConnect.Algorithm")
 AddReference("QuantConnect.Indicators")
 AddReference("QuantConnect.Common")
-
 from System import *
 from QuantConnect import *
 from QuantConnect.Algorithm import *
 from QuantConnect.Indicators import *
-from datetime import datetime
+
+def GenerateMACDParams() -> list:
+    # instead of standard macd(12,26) with a 9 day signal we try different values
+    macdParams = [(12, 26, 9)]
+    slowRange = range(10, 30)
+    fastRange = range(5, 15)
+    signalRange = range(2, 10)
+    for slow in slowRange:
+        for fast in fastRange:
+            for signal in signalRange:
+                if signal < fast and fast < slow:
+                    validParam = (fast, slow, signal)
+                    if macdParams[0] != validParam:
+                        macdParams.append(validParam)
+    return macdParams
 
 class MACD_Simple(QCAlgorithm):
+    class MACDIndicator:
+        def __init__(self, strategy, symbol : str, fast : int, slow : int, signal : int, interval : Resolution):
+            if fast >= slow:
+                raise Exception(f"MACD fast[{fast}] >= slow[{slow}]")
+            if signal >= fast:
+                raise Exception(f"MACD signal[{signal}] >= fast[{fast}]")
+            self.__tolerance = 0.0025
+            self.__impl = strategy.MACD(symbol, fast, slow, signal, MovingAverageType.Exponential, interval)
+
+        @property
+        def IsReady(self) -> Boolean:
+            return self.__impl.IsReady
+
+        @property
+        def Current(self):
+            return self.__impl.Current
+
+        @property
+        def Slow(self):
+            return self.__impl.Slow
+
+        @property
+        def Fast(self):
+            return self.__impl.Fast
+
+        @property
+        def Signal(self):
+            return self.__impl.Signal
+
+        def decide(self) -> int:
+            if not self.IsReady:
+                return 0
+            signal = (self.Current.Value - self.Signal.Current.Value)/self.Fast.Current.Value
+            if signal > self.__tolerance:
+                return 1
+            elif signal < -self.__tolerance:
+                return -1
+            return 0
+
+    def InitMACDParams(self):
+        self.macdParams = GenerateMACDParams()
+        self.Debug(f"MACD parameters generated : {len(self.macdParams)}")
+
+    def InitSymbol(self):
+        symbols = ["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU", "FB", "WMT", "AMD", "AMZN", "GOOG", "HP", "GE", "F", "T",  "BAC", "CSCO", "KO", "PINS", "PG", "PEP", "UPS", "PYPL"]
+        symbolIndex = int(self.GetParameter("symbol-index"))
+        self.symbol = symbols[symbolIndex]
+        self.Debug(f"Select symbols[{symbolIndex}] = {self.symbol}")
 
     def Initialize(self):
-        '''Initialise the data and resolution required, as well as the cash and start-end dates for your algorithm. All algorithms must initialized.'''
+        self.InitMACDParams()
+        self.InitSymbol()
 
-        self.symbol = "AAPL"
         self.SetStartDate(2018, 1, 1)    #Set Start Date
         self.SetEndDate(2019, 1, 1)      #Set End Date
         self.SetCash(100000)             #Set Strategy Cash
         # Find more symbols here: http://quantconnect.com/data
         self.AddEquity(self.symbol, Resolution.Daily)
 
-        # define our daily macd(12,26) with a 9 day signal
-        self.__macd = self.MACD(self.symbol, 7, 13, 3, MovingAverageType.Exponential, Resolution.Daily)
-        self.__tolerance = 0.0025
-        #self.__previous = datetime.min
-        self.PlotIndicator("MACD", True, self.__macd, self.__macd.Signal)
-        self.PlotIndicator(self.symbol, self.__macd.Fast, self.__macd.Slow)
+        macdParamIndex = int(self.GetParameter("macd-param-index"))
+        macdParam = self.macdParams[macdParamIndex]
+        self.Debug(f"macdParams[{macdParamIndex}]={macdParam}")
+
+        self.macd = self.MACDIndicator(self, self.symbol, macdParam[0], macdParam[1], macdParam[2], Resolution.Daily)
+        #self.PlotIndicator("MACD", True, self.macd, self.macd.Signal)
+        #self.PlotIndicator(self.symbol, self.macd.Fast, self.macd.Slow)
 
 
     def OnData(self, data):
-        if not self.__macd.IsReady:
+        if not self.macd.IsReady:
             return
 
         holdings = self.Portfolio[self.symbol].Quantity
+        macdDecision = self.macd.decide()
 
-        signalDeltaPercent = (self.__macd.Current.Value - self.__macd.Signal.Current.Value)/self.__macd.Fast.Current.Value
+        if macdDecision > 0:
+            if holdings <= 0:
+                self.SetHoldings(self.symbol, 1.0)
+        elif macdDecision < 0:
+            if holdings >= 0:
+                self.SetHoldings(self.symbol, -1.0)
 
-        # if our macd is greater than our signal, then let's go long
-        if holdings <= 0 and signalDeltaPercent > self.__tolerance:
-            self.SetHoldings(self.symbol, 1.0)
-        # of our macd is less than our signal, then let's go short
-        elif holdings >= 0 and signalDeltaPercent < -self.__tolerance:
-            self.SetHoldings(self.symbol, -1.0)

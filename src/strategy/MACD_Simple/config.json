@@ -1,6 +1,10 @@
 {
     "algorithm-language": "Python",
-    "parameters": {},
+    "parameters": {
+        "macd-param-index" : 1043,
+        "symbol-index" : 0
+    },
     "description": "",
-    "cloud-id": 8075797
+    "cloud-id": 8075797,
+    "local-id": 675179092
 }
