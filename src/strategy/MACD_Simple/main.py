@@ -78,8 +78,8 @@ class MACD_Simple(QCAlgorithm):
         self.InitMACDParams()
         self.InitSymbol()
 
-        self.SetStartDate(2018, 1, 1)    #Set Start Date
-        self.SetEndDate(2019, 1, 1)      #Set End Date
+        self.SetStartDate(2019, 1, 1)    #Set Start Date
+        self.SetEndDate(2021, 1, 1)      #Set End Date
         self.SetCash(100000)             #Set Strategy Cash
         # Find more symbols here: http://quantconnect.com/data
         self.AddEquity(self.symbol, Resolution.Daily)

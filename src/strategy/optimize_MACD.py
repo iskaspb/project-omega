@@ -1,5 +1,7 @@
 import subprocess
 import re
+from timeit import default_timer as timer
+from datetime import timedelta
 
 def GenerateMACDParams() -> list:
     # instead of standard macd(12,26) with a 9 day signal we try different values
@@ -18,14 +20,17 @@ def GenerateMACDParams() -> list:
 
 
 def main() -> None:
+    start = timer()
+
     macdParams = GenerateMACDParams()
+    macdParams = macdParams[0:1]
     print(f"MACD parameters generated : {len(macdParams)}")
-    #macdParamIndex = 1043
-    #print(f"macdParams[{macdParamIndex}]={macdParams[macdParamIndex]}")
     symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU", "FB", "WMT", "AMD", "AMZN", "GOOG", "HP", "GE", "F", "T",  "BAC", "CSCO", "KO", "PINS", "PG", "PEP", "UPS", "PYPL"]))
     print(f"Optimize for {len(symbols)} symbols : {symbols}")
 
     for symbolIndex in range(0, len(symbols)-1):
+        startOptimize = timer()
+
         symbol = symbols[symbolIndex]
         optimizeCmd = ["lean", "optimize", "--strategy", 'Grid Search', "--target", 'Sharpe Ratio', "--target-direction", "max", "--parameter", "macd-param-index", "0", f"{len(macdParams)-1}", "1", "--parameter", "symbol-index", f"{symbolIndex}", f"{symbolIndex}", "1", "MACD_Simple"]
         print(f"#optimize for symbol {symbol} : {' '.join(optimizeCmd)}", flush=True)
@@ -50,9 +55,15 @@ def main() -> None:
             continue
         annualInterest = float(x.group(1))
         if annualInterest < 15.0:
-            print(f'self.indicators[{symbol}] = {{"MACD": self.MACDIndicator(self, {symbol}, {fast}, {slow}, {signal})}} #Interest is too low: {annualInterest}', flush=True)
+            print(f'self.indicators[{symbol}] = {{"MACD": self.MACDIndicator(self, {symbol}, {fast}, {slow}, {signal})}} #Interest is too low (<15%): {annualInterest}', flush=True)
         else:
             print(f'self.indicators[{symbol}] = {{"MACD": self.MACDIndicator(self, {symbol}, {fast}, {slow}, {signal})}} #Interest: {annualInterest}', flush=True)
+        elapsedOptimizeTime = timedelta(seconds=timer()-startOptimize)
+        print(f"#Elapsed optimize {symbol} MACD iteration time : {elapsedOptimizeTime}")
+
+    elapsedTotalTime = timedelta(seconds=timer() - start)
+    print(f"Elapsed optimize total time : {elapsedTotalTime}")
+
 
 
 if __name__ == "__main__":
