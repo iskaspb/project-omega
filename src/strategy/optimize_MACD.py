@@ -23,7 +23,7 @@ def main() -> None:
     start = timer()
 
     macdParams = GenerateMACDParams()
-    macdParams = macdParams[0:1]
+    #macdParams = macdParams[0:1]
     print(f"MACD parameters generated : {len(macdParams)}")
     symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU", "FB", "WMT", "AMD", "AMZN", "GOOG", "HP", "GE", "F", "T",  "BAC", "CSCO", "KO", "PINS", "PG", "PEP", "UPS", "PYPL"]))
     print(f"Optimize for {len(symbols)} symbols : {symbols}")
