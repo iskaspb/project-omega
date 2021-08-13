@@ -27,12 +27,11 @@ def main() -> None:
 
     for symbolIndex in range(0, len(symbols)-1):
         symbol = symbols[symbolIndex]
-        #print(f"#optimize for symbol {symbol}")
-        optimizeCmd = ["lean", "optimize", "--strategy", '"Grid Search"', "--target", '"Sharpe Ratio"', "--target-direction", "max", "--parameter", "macd-param-index", "0", f"{len(macdParams)-1}", "1", "--parameter", "symbol-index", f"{symbolIndex}", f"{symbolIndex}", "1", "MACD_Simple"]
-        print(f"#optimize for symbol {symbol} : {' '.join(optimizeCmd)}")
+        optimizeCmd = ["lean", "optimize", "--strategy", 'Grid Search', "--target", 'Sharpe Ratio', "--target-direction", "max", "--parameter", "macd-param-index", "0", f"{len(macdParams)-1}", "1", "--parameter", "symbol-index", f"{symbolIndex}", f"{symbolIndex}", "1", "MACD_Simple"]
+        print(f"#optimize for symbol {symbol} : {' '.join(optimizeCmd)}", flush=True)
         process = subprocess.Popen(optimizeCmd, stdout=subprocess.PIPE)
         output, error = process.communicate()
-        output = output.decode('utf-8', 'ignore') #[-3000:]
+        output = output.decode('utf-8', 'ignore')[-3000:]
         x = re.search(r"Optimal parameters: symbol-index: (\d+), macd-param-index: (\d+)", output)
         if not x:
             print(f"Couldn't interpret the output symbol {symbol}: {output}")
