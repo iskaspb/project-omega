@@ -45,13 +45,18 @@ class MACDTrend(QCAlgorithm):
         self.stopLossTolerance = 0.093
         #...indicator signals
         self.signals = {}
-        self.maxSymbolAllocatedCount = 3
         self.minSignalLevel = 1
 
         #Search symbols in https://www.quantconnect.com/data
         self.AddEquity("SPY", Resolution.Daily)
-        self.symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]))
+        #self.symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]))
         #self.symbols = sorted(set(['AAPL', 'AMD', 'AMZN', 'BABA', 'BAC', 'CSCO', 'F', 'FB', 'GE', 'GOOG', 'HP', 'INTC', 'KO', 'MU', 'NVDA', 'PEP', 'PG', 'PINS', 'PYPL', 'T', 'TSLA', 'UPS', 'WMT']))
+        #self.symbols = sorted(set(['AAPL', 'AMZN', 'BAC', 'CSCO', 'F', 'GE', 'GOOG', 'HP', 'PYPL', 'T', 'TSLA', 'UPS']))
+        self.symbols = sorted(set(['AAPL', 'AMZN', 'BAC', 'GE', 'PYPL', 'UPS']))
+
+        self.maxSymbolAllocatedCount = int(self.GetParameter("max-symbol-allocated-count"))
+        if self.maxSymbolAllocatedCount < 1 or self.maxSymbolAllocatedCount > len(self.symbols):
+            raise Exception(f"Invalid max-symbol-allocated-count parameter value : {self.maxSymbolAllocatedCount}. Must be in the range[1, len(self.symbols)]")
 
         '''
         self.Schedule.On(
@@ -64,6 +69,18 @@ class MACDTrend(QCAlgorithm):
             self.AddEquity(symbol, Resolution.Daily)
             self.indicators[symbol] = {"MACD": self.MACDIndicator(self, symbol, 7, 13, 3)}
             self.stopMarketTicket[symbol] = None
+        self.indicators["AAPL"] = {"MACD": self.MACDIndicator(self, "AAPL", 10, 14, 7)} #Total Trades: 11, Compounding Annual Return: 265.239, Sharpe Ratio: 2.899
+        self.indicators["AMZN"] = {"MACD": self.MACDIndicator(self, "AMZN", 13, 15, 4)} #Total Trades: 5, Compounding Annual Return: 296.728, Sharpe Ratio: 5.514
+        self.indicators["BAC"] = {"MACD": self.MACDIndicator(self, "BAC", 9, 11, 3)} #Total Trades: 4, Compounding Annual Return: 73.923, Sharpe Ratio: 2.489
+        #self.indicators["CSCO"] = {"MACD": self.MACDIndicator(self, "CSCO", 6, 15, 4)} #Total Trades: 44, Compounding Annual Return: 55.613, Sharpe Ratio: 1.72
+        #self.indicators["F"] = {"MACD": self.MACDIndicator(self, "F", 8, 10, 3)} #Total Trades: 2, Compounding Annual Return: 31.223, Sharpe Ratio: 1.535
+        self.indicators["GE"] = {"MACD": self.MACDIndicator(self, "GE", 10, 12, 3)} #Total Trades: 3, Compounding Annual Return: 95.471, Sharpe Ratio: 2.236
+        #self.indicators["GOOG"] = {"MACD": self.MACDIndicator(self, "GOOG", 7, 12, 4)} #Total Trades: 15, Compounding Annual Return: 34.081, Sharpe Ratio: 1.703
+        #self.indicators["HP"] = {"MACD": self.MACDIndicator(self, "HP", 9, 12, 6)} #Total Trades: 5, Compounding Annual Return: 41.689, Sharpe Ratio: 1.82
+        self.indicators["PYPL"] = {"MACD": self.MACDIndicator(self, "PYPL", 12, 15, 5)} #Total Trades: 10, Compounding Annual Return: 83.526, Sharpe Ratio: 2.17
+        #self.indicators["T"] = {"MACD": self.MACDIndicator(self, "T", 11, 15, 9)} #Total Trades: 6, Compounding Annual Return: 22.325, Sharpe Ratio: 1.601
+        #self.indicators["TSLA"] = {"MACD": self.MACDIndicator(self, "TSLA", 8, 16, 5)} #Total Trades: 9, Compounding Annual Return: 23.22, Sharpe Ratio: 1.757
+        self.indicators["UPS"] = {"MACD": self.MACDIndicator(self, "UPS", 10, 13, 7)} #Total Trades: 6, Compounding Annual Return: 42.712, Sharpe Ratio: 1.972
         '''
         self.indicators['AAPL'] = {"MACD": self.MACDIndicator(self, 'AAPL', 10, 14, 7)} #Interest: 34.851
         self.indicators['AMD'] = {"MACD": self.MACDIndicator(self, 'AMD', 12, 26, 2)} #Interest: 64.788
@@ -245,14 +262,21 @@ class MACDTrend(QCAlgorithm):
 
         self.Debug(f"Allocate {newPortfolioAllocation}")
 
+        allocationTasks = []
         for symbol in self.portfolioAllocation:
             if symbol not in newPortfolioAllocation:
-                self.ClearStopLoss(symbol)
-                self.Liquidate(symbol)
+                allocationTasks.append((symbol, 1.))
                 
         for symbol, amount in newPortfolioAllocation.items():
             if symbol not in self.portfolioAllocation:
-                self.ClearStopLoss(symbol)
-                self.SetHoldings(symbol, amount)
+                if (symbol, 1.) in allocationTasks:
+                    raise Exception(f"Symbol {symbol} is already ordered for liquidation")
+                allocationTasks.append((symbol, amount))
 
         self.portfolioAllocation = newPortfolioAllocation
+        for (symbol, amount) in allocationTasks:
+            self.ClearStopLoss(symbol)
+            if amount == 1.:
+                self.Liquidate(symbol)
+            else:
+                self.SetHoldings(symbol, amount)
