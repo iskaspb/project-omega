@@ -1,7 +1,7 @@
 {
     "algorithm-language": "Python",
     "parameters": {
-        "macd-param-index" : 1043,
+        "macd-param-index" : 0,
         "symbol-index" : 0
     },
     "description": "",

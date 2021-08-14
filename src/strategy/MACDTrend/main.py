@@ -51,7 +51,7 @@ class MACDTrend(QCAlgorithm):
         #Search symbols in https://www.quantconnect.com/data
         self.AddEquity("SPY", Resolution.Daily)
         self.symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]))
-        #self.symbols = sorted(set(["AAPL"]))
+        #self.symbols = sorted(set(['AAPL', 'AMD', 'AMZN', 'BABA', 'BAC', 'CSCO', 'F', 'FB', 'GE', 'GOOG', 'HP', 'INTC', 'KO', 'MU', 'NVDA', 'PEP', 'PG', 'PINS', 'PYPL', 'T', 'TSLA', 'UPS', 'WMT']))
 
         '''
         self.Schedule.On(
@@ -64,6 +64,32 @@ class MACDTrend(QCAlgorithm):
             self.AddEquity(symbol, Resolution.Daily)
             self.indicators[symbol] = {"MACD": self.MACDIndicator(self, symbol, 7, 13, 3)}
             self.stopMarketTicket[symbol] = None
+        '''
+        self.indicators['AAPL'] = {"MACD": self.MACDIndicator(self, 'AAPL', 10, 14, 7)} #Interest: 34.851
+        self.indicators['AMD'] = {"MACD": self.MACDIndicator(self, 'AMD', 12, 26, 2)} #Interest: 64.788
+        self.indicators['AMZN'] = {"MACD": self.MACDIndicator(self, 'AMZN', 10, 11, 5)} #Interest: 94.87
+        self.indicators['BABA'] = {"MACD": self.MACDIndicator(self, 'BABA', 6, 23, 5)} #Interest: 74.06
+        self.indicators['BAC'] = {"MACD": self.MACDIndicator(self, 'BAC', 14, 15, 7)} #Interest: 20.435
+        self.indicators['CSCO'] = {"MACD": self.MACDIndicator(self, 'CSCO', 11, 14, 9)} #Interest: 56.465
+        self.indicators['F'] = {"MACD": self.MACDIndicator(self, 'F', 8, 10, 3)} #Interest: 59.813
+        self.indicators['FB'] = {"MACD": self.MACDIndicator(self, 'FB', 10, 12, 5)} #Interest: 29.013
+        self.indicators['GE'] = {"MACD": self.MACDIndicator(self, 'GE', 10, 12, 3)} #Interest: 77.01
+        self.indicators['GOOG'] = {"MACD": self.MACDIndicator(self, 'GOOG', 7, 12, 2)} #Interest: 58.182
+        self.indicators['HP'] = {"MACD": self.MACDIndicator(self, 'HP', 9, 12, 6)} #Interest: 86.943
+        self.indicators['INTC'] = {"MACD": self.MACDIndicator(self, 'INTC', 8, 22, 2)} #Interest: 82.998
+        self.indicators['KO'] = {"MACD": self.MACDIndicator(self, 'KO', 9, 14, 2)} #Interest: 66.89
+        self.indicators['MU'] = {"MACD": self.MACDIndicator(self, 'MU', 11, 13, 9)} #Interest: 68.275
+        self.indicators['NVDA'] = {"MACD": self.MACDIndicator(self, 'NVDA', 7, 10, 3)} #Interest: 28.659
+        self.indicators['PEP'] = {"MACD": self.MACDIndicator(self, 'PEP', 7, 13, 4)} #Interest: 69.394
+        self.indicators['PG'] = {"MACD": self.MACDIndicator(self, 'PG', 6, 12, 2)} #Interest: 64.179
+        self.indicators['PINS'] = {"MACD": self.MACDIndicator(self, 'PINS', 13, 15, 8)} #Interest: 57.779
+        self.indicators['PYPL'] = {"MACD": self.MACDIndicator(self, 'PYPL', 10, 11, 3)} #Interest: 91.745
+        self.indicators['T'] = {"MACD": self.MACDIndicator(self, 'T', 11, 15, 9)} #Interest: 45.105
+        self.indicators['TSLA'] = {"MACD": self.MACDIndicator(self, 'TSLA', 7, 12, 6)} #Interest: 57.789
+        self.indicators['UPS'] = {"MACD": self.MACDIndicator(self, 'UPS', 10, 13, 7)} #Interest: 75.049
+        '''
+
+
         ##########################################
         #BUY SPY only : T=1, 56.593%, B=-0.225, SH=1.035
         ##########################################

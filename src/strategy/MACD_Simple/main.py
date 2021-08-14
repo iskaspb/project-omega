@@ -12,13 +12,13 @@ from QuantConnect.Indicators import *
 def GenerateMACDParams() -> list:
     # instead of standard macd(12,26) with a 9 day signal we try different values
     macdParams = [(12, 26, 9)]
-    slowRange = range(10, 30)
-    fastRange = range(5, 15)
-    signalRange = range(2, 10)
+    slowRange = range(10, 28)
+    fastRange = range(5, 14)
+    signalRange = range(3, 11)
     for slow in slowRange:
         for fast in fastRange:
             for signal in signalRange:
-                if signal < fast and fast < slow:
+                if (signal+1) < fast and (fast+1) < slow and (slow/4) <= signal :
                     validParam = (fast, slow, signal)
                     if macdParams[0] != validParam:
                         macdParams.append(validParam)
@@ -104,6 +104,11 @@ class MACD_Simple(QCAlgorithm):
             if holdings <= 0:
                 self.SetHoldings(self.symbol, 1.0)
         elif macdDecision < 0:
+            ''' This is short sell logic
             if holdings >= 0:
                 self.SetHoldings(self.symbol, -1.0)
+            '''
+            if holdings > 0:
+                self.Liquidate(self.symbol)
+
 

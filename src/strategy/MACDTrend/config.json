@@ -1,8 +1,7 @@
 {
     "algorithm-language": "Python",
-    "parameters": {
-        "MACD_param": "5"
-    },
+    "parameters": {},
     "description": "MACD selection 3 best symbol out of [AAPL,BABA,TSLA,INTC,NVDA,MU] with trailing stop loss",
-    "cloud-id": 8035296
+    "cloud-id": 8035296,
+    "local-id": 281241026
 }
