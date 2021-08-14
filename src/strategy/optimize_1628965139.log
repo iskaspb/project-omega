@@ -1,0 +1,729 @@
+MACD parameters generated : 395
+Optimize for 23 symbols : ['AAPL', 'AMD', 'AMZN', 'BABA', 'BAC', 'CSCO', 'F', 'FB', 'GE', 'GOOG', 'HP', 'INTC', 'KO', 'MU', 'NVDA', 'PEP', 'PG', 'PINS', 'PYPL', 'T', 'TSLA', 'UPS', 'WMT']
+#optimize for symbol AAPL : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 0 0 1 MACD_Simple
+self.indicators["AAPL"] = {"MACD": self.MACDIndicator(self, "AAPL", 10, 14, 7)} #Total Trades: 11, Compounding Annual Return: 265.239, Sharpe Ratio: 2.899
+#Elapsed optimize AAPL MACD iteration time : 0:12:55.863048
+#optimize for symbol AMD : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 1 1 1 MACD_Simple
+#Optimization of AMD failed, please review optimization criterias
+814 18:44:48.713 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 18:44:48.714 TRACE::
+STATISTICS:: Total Trades 20
+STATISTICS:: Average Win 7.16%
+STATISTICS:: Average Loss -2.84%
+STATISTICS:: Compounding Annual Return 4.499%
+STATISTICS:: Drawdown 19.900%
+STATISTICS:: Expectancy 0.408
+STATISTICS:: Net Profit 9.214%
+STATISTICS:: Sharpe Ratio 0.311
+STATISTICS:: Probabilistic Sharpe Ratio 15.123%
+STATISTICS:: Loss Rate 60%
+STATISTICS:: Win Rate 40%
+STATISTICS:: Profit-Loss Ratio 2.52
+STATISTICS:: Alpha 0.068
+STATISTICS:: Beta -0.067
+STATISTICS:: Annual Standard Deviation 0.195
+STATISTICS:: Annual Variance 0.038
+STATISTICS:: Information Ratio -0.151
+STATISTICS:: Tracking Error 0.312
+STATISTICS:: Treynor Ratio -0.91
+STATISTICS:: Total Fees $52.12
+STATISTICS:: Estimated Strategy Capacity $260000000.00
+STATISTICS:: Lowest Capacity Asset BABA 2T
+STATISTICS:: Fitness Score 0.019
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0.207
+STATISTICS:: Return Over Maximum Drawdown 0.226
+STATISTICS:: Portfolio Turnover 0.035
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d3a9418eafce1b3068e7f2c8e66fe7f5
+20210814 18:44:48.714 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 18:44:48.716 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 18:44:48.716 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 18:44:48.716 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 18:44:48.717 TRACE:: Engine.Main(): Packet removed from queue: 
+04a0dc9c-b32b-490d-a8dc-2c20d84ff636
+20210814 18:44:48.718 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 18:44:48.718 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 18:44:48.719 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 18:44:48.725 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 18:44:48.727 TRACE:: Program.Main(): Exiting Lean...
+20210814 18:44:48.804 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+e86fd175-bd0c-4d80-a80d-7195453d1379): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_02-31-57'
+
+#optimize for symbol AMZN : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 2 2 1 MACD_Simple
+self.indicators["AMZN"] = {"MACD": self.MACDIndicator(self, "AMZN", 13, 15, 4)} #Total Trades: 5, Compounding Annual Return: 296.728, Sharpe Ratio: 5.514
+#Elapsed optimize AMZN MACD iteration time : 0:12:52.118334
+#optimize for symbol BABA : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 3 3 1 MACD_Simple
+#Optimization of BABA failed, please review optimization criterias
+ 19:10:28.398 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 19:10:28.399 TRACE::
+STATISTICS:: Total Trades 22
+STATISTICS:: Average Win 5.26%
+STATISTICS:: Average Loss -8.98%
+STATISTICS:: Compounding Annual Return -1.603%
+STATISTICS:: Drawdown 27.200%
+STATISTICS:: Expectancy 0.009
+STATISTICS:: Net Profit -3.185%
+STATISTICS:: Sharpe Ratio 0.076
+STATISTICS:: Probabilistic Sharpe Ratio 8.538%
+STATISTICS:: Loss Rate 36%
+STATISTICS:: Win Rate 64%
+STATISTICS:: Profit-Loss Ratio 0.59
+STATISTICS:: Alpha 0.025
+STATISTICS:: Beta -0.05
+STATISTICS:: Annual Standard Deviation 0.257
+STATISTICS:: Annual Variance 0.066
+STATISTICS:: Information Ratio -0.251
+STATISTICS:: Tracking Error 0.352
+STATISTICS:: Treynor Ratio -0.386
+STATISTICS:: Total Fees $219.13
+STATISTICS:: Estimated Strategy Capacity $44000000.00
+STATISTICS:: Lowest Capacity Asset INTC 2T
+STATISTICS:: Fitness Score 0.019
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio -0.047
+STATISTICS:: Return Over Maximum Drawdown -0.058
+STATISTICS:: Portfolio Turnover 0.039
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 604987c9e5f9a818ffebf20b054729cc
+20210814 19:10:28.400 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 19:10:28.401 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 19:10:28.402 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 19:10:28.402 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 19:10:28.403 TRACE:: Engine.Main(): Packet removed from queue: 
+166c0c40-7ae5-43f8-95a5-6ef7242935d3
+20210814 19:10:28.403 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 19:10:28.404 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 19:10:28.404 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 19:10:28.406 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 19:10:28.408 TRACE:: Program.Main(): Exiting Lean...
+20210814 19:10:28.497 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+38f14d89-e9c0-40e7-aaa9-120ba8faaf9d): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_02-57-44'
+
+#optimize for symbol BAC : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 4 4 1 MACD_Simple
+self.indicators["BAC"] = {"MACD": self.MACDIndicator(self, "BAC", 9, 11, 3)} #Total Trades: 4, Compounding Annual Return: 73.923, Sharpe Ratio: 2.489
+#Elapsed optimize BAC MACD iteration time : 0:12:54.737210
+#optimize for symbol CSCO : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 5 5 1 MACD_Simple
+self.indicators["CSCO"] = {"MACD": self.MACDIndicator(self, "CSCO", 6, 15, 4)} #Total Trades: 44, Compounding Annual Return: 55.613, Sharpe Ratio: 1.72
+#Elapsed optimize CSCO MACD iteration time : 0:12:52.914255
+#optimize for symbol F : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 6 6 1 MACD_Simple
+self.indicators["F"] = {"MACD": self.MACDIndicator(self, "F", 8, 10, 3)} #Total Trades: 2, Compounding Annual Return: 31.223, Sharpe Ratio: 1.535
+#Elapsed optimize F MACD iteration time : 0:12:47.804242
+#optimize for symbol FB : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 7 7 1 MACD_Simple
+#Optimization of FB failed, please review optimization criterias
+20:01:49.623 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 20:01:49.624 TRACE::
+STATISTICS:: Total Trades 24
+STATISTICS:: Average Win 2.83%
+STATISTICS:: Average Loss -5.40%
+STATISTICS:: Compounding Annual Return -11.981%
+STATISTICS:: Drawdown 27.900%
+STATISTICS:: Expectancy -0.365
+STATISTICS:: Net Profit -22.553%
+STATISTICS:: Sharpe Ratio -0.708
+STATISTICS:: Probabilistic Sharpe Ratio 0.369%
+STATISTICS:: Loss Rate 58%
+STATISTICS:: Win Rate 42%
+STATISTICS:: Profit-Loss Ratio 0.52
+STATISTICS:: Alpha -0.096
+STATISTICS:: Beta -0.036
+STATISTICS:: Annual Standard Deviation 0.141
+STATISTICS:: Annual Variance 0.02
+STATISTICS:: Information Ratio -0.752
+STATISTICS:: Tracking Error 0.276
+STATISTICS:: Treynor Ratio 2.778
+STATISTICS:: Total Fees $93.31
+STATISTICS:: Estimated Strategy Capacity $28000000.00
+STATISTICS:: Lowest Capacity Asset WMT 2T
+STATISTICS:: Fitness Score 0.018
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio -0.57
+STATISTICS:: Return Over Maximum Drawdown -0.429
+STATISTICS:: Portfolio Turnover 0.042
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 32d61f302f5904d50910710f85734c94
+20210814 20:01:49.624 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 20:01:49.625 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 20:01:49.626 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 20:01:49.626 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 20:01:49.627 TRACE:: Engine.Main(): Packet removed from queue: 
+b382fb5b-c7c5-42b4-bc30-03693739dd51
+20210814 20:01:49.628 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 20:01:49.628 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 20:01:49.629 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 20:01:49.635 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 20:01:49.637 TRACE:: Program.Main(): Exiting Lean...
+20210814 20:01:49.718 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+7b210c53-d0c3-4117-9a15-814c5979c22b): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_03-49-08'
+
+#optimize for symbol GE : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 8 8 1 MACD_Simple
+self.indicators["GE"] = {"MACD": self.MACDIndicator(self, "GE", 10, 12, 3)} #Total Trades: 3, Compounding Annual Return: 95.471, Sharpe Ratio: 2.236
+#Elapsed optimize GE MACD iteration time : 0:13:03.610543
+#optimize for symbol GOOG : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 9 9 1 MACD_Simple
+self.indicators["GOOG"] = {"MACD": self.MACDIndicator(self, "GOOG", 7, 12, 4)} #Total Trades: 15, Compounding Annual Return: 34.081, Sharpe Ratio: 1.703
+#Elapsed optimize GOOG MACD iteration time : 0:12:47.282833
+#optimize for symbol HP : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 10 10 1 MACD_Simple
+self.indicators["HP"] = {"MACD": self.MACDIndicator(self, "HP", 9, 12, 6)} #Total Trades: 5, Compounding Annual Return: 41.689, Sharpe Ratio: 1.82
+#Elapsed optimize HP MACD iteration time : 0:12:45.878556
+#optimize for symbol INTC : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 11 11 1 MACD_Simple
+#Optimization of INTC failed, please review optimization criterias
+20210814 20:53:31.523 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 20:53:31.524 TRACE::
+STATISTICS:: Total Trades 22
+STATISTICS:: Average Win 18.73%
+STATISTICS:: Average Loss -10.33%
+STATISTICS:: Compounding Annual Return 20.251%
+STATISTICS:: Drawdown 50.100%
+STATISTICS:: Expectancy 0.535
+STATISTICS:: Net Profit 44.677%
+STATISTICS:: Sharpe Ratio 0.68
+STATISTICS:: Probabilistic Sharpe Ratio 27.061%
+STATISTICS:: Loss Rate 45%
+STATISTICS:: Win Rate 55%
+STATISTICS:: Profit-Loss Ratio 1.81
+STATISTICS:: Alpha 0.293
+STATISTICS:: Beta 0.06
+STATISTICS:: Annual Standard Deviation 0.44
+STATISTICS:: Annual Variance 0.194
+STATISTICS:: Information Ratio 0.392
+STATISTICS:: Tracking Error 0.49
+STATISTICS:: Treynor Ratio 5.033
+STATISTICS:: Total Fees $464.63
+STATISTICS:: Estimated Strategy Capacity $1100000.00
+STATISTICS:: Lowest Capacity Asset HP 2T
+STATISTICS:: Fitness Score 0.022
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0.491
+STATISTICS:: Return Over Maximum Drawdown 0.404
+STATISTICS:: Portfolio Turnover 0.039
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 58ab3b12fef39674a6d1edf6172203e3
+20210814 20:53:31.525 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 20:53:31.526 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 20:53:31.526 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 20:53:31.527 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 20:53:31.528 TRACE:: Engine.Main(): Packet removed from queue: 
+ac688a0c-f99f-48c2-b875-64da1dd6d882
+20210814 20:53:31.528 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 20:53:31.528 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 20:53:31.529 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 20:53:31.535 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 20:53:31.537 TRACE:: Program.Main(): Exiting Lean...
+20210814 20:53:31.630 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+08fe0f31-8195-4daa-9e7c-17261f2d2d78): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_04-40-30'
+
+#optimize for symbol KO : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 12 12 1 MACD_Simple
+#Optimization of KO failed, please review optimization criterias
+14 21:06:17.687 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 21:06:17.687 TRACE::
+STATISTICS:: Total Trades 24
+STATISTICS:: Average Win 33.50%
+STATISTICS:: Average Loss -6.26%
+STATISTICS:: Compounding Annual Return 10.715%
+STATISTICS:: Drawdown 36.100%
+STATISTICS:: Expectancy 0.587
+STATISTICS:: Net Profit 22.612%
+STATISTICS:: Sharpe Ratio 0.478
+STATISTICS:: Probabilistic Sharpe Ratio 20.171%
+STATISTICS:: Loss Rate 75%
+STATISTICS:: Win Rate 25%
+STATISTICS:: Profit-Loss Ratio 5.35
+STATISTICS:: Alpha 0.156
+STATISTICS:: Beta -0.015
+STATISTICS:: Annual Standard Deviation 0.323
+STATISTICS:: Annual Variance 0.104
+STATISTICS:: Information Ratio 0.117
+STATISTICS:: Tracking Error 0.398
+STATISTICS:: Treynor Ratio -10.112
+STATISTICS:: Total Fees $151.01
+STATISTICS:: Estimated Strategy Capacity $28000000.00
+STATISTICS:: Lowest Capacity Asset GE 2T
+STATISTICS:: Fitness Score 0.023
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0.39
+STATISTICS:: Return Over Maximum Drawdown 0.297
+STATISTICS:: Portfolio Turnover 0.042
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 08c64e4e12ced18afbe0713a75c4963c
+20210814 21:06:17.688 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 21:06:17.689 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 21:06:17.690 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 21:06:17.690 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 21:06:17.691 TRACE:: Engine.Main(): Packet removed from queue: 
+7a9b8cba-4759-4e45-813a-0f9119b515c4
+20210814 21:06:17.692 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 21:06:17.693 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 21:06:17.693 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 21:06:17.695 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 21:06:17.697 TRACE:: Program.Main(): Exiting Lean...
+20210814 21:06:17.771 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+08f9f76b-9877-411a-bbed-7ca60dc4541d): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_04-53-36'
+
+#optimize for symbol MU : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 13 13 1 MACD_Simple
+#Optimization of MU failed, please review optimization criterias
+0210814 21:18:58.306 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 21:18:58.307 TRACE::
+STATISTICS:: Total Trades 18
+STATISTICS:: Average Win 9.21%
+STATISTICS:: Average Loss -6.72%
+STATISTICS:: Compounding Annual Return 16.556%
+STATISTICS:: Drawdown 26.600%
+STATISTICS:: Expectancy 0.580
+STATISTICS:: Net Profit 35.911%
+STATISTICS:: Sharpe Ratio 0.698
+STATISTICS:: Probabilistic Sharpe Ratio 29.232%
+STATISTICS:: Loss Rate 33%
+STATISTICS:: Win Rate 67%
+STATISTICS:: Profit-Loss Ratio 1.37
+STATISTICS:: Alpha 0.188
+STATISTICS:: Beta 0.043
+STATISTICS:: Annual Standard Deviation 0.276
+STATISTICS:: Annual Variance 0.076
+STATISTICS:: Information Ratio 0.24
+STATISTICS:: Tracking Error 0.352
+STATISTICS:: Treynor Ratio 4.43
+STATISTICS:: Total Fees $1352.87
+STATISTICS:: Estimated Strategy Capacity $17000000.00
+STATISTICS:: Lowest Capacity Asset F 2T
+STATISTICS:: Fitness Score 0.019
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0.611
+STATISTICS:: Return Over Maximum Drawdown 0.622
+STATISTICS:: Portfolio Turnover 0.031
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash b1223f6955f2361a630d0500f67502c8
+20210814 21:18:58.307 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 21:18:58.308 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 21:18:58.309 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 21:18:58.309 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 21:18:58.310 TRACE:: Engine.Main(): Packet removed from queue: 
+4f174aa9-2c1b-4811-8481-c2a03b8bbf2d
+20210814 21:18:58.311 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 21:18:58.311 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 21:18:58.311 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 21:18:58.313 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 21:18:58.315 TRACE:: Program.Main(): Exiting Lean...
+20210814 21:18:58.387 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+624454bd-212c-4204-85ea-c2ca6af49340): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_05-06-22'
+
+#optimize for symbol NVDA : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 14 14 1 MACD_Simple
+#Optimization of NVDA failed, please review optimization criterias
+814 21:31:45.756 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 21:31:45.756 TRACE::
+STATISTICS:: Total Trades 22
+STATISTICS:: Average Win 2.62%
+STATISTICS:: Average Loss -3.77%
+STATISTICS:: Compounding Annual Return -10.938%
+STATISTICS:: Drawdown 24.500%
+STATISTICS:: Expectancy -0.538
+STATISTICS:: Net Profit -20.706%
+STATISTICS:: Sharpe Ratio -0.648
+STATISTICS:: Probabilistic Sharpe Ratio 0.568%
+STATISTICS:: Loss Rate 73%
+STATISTICS:: Win Rate 27%
+STATISTICS:: Profit-Loss Ratio 0.69
+STATISTICS:: Alpha -0.089
+STATISTICS:: Beta -0.01
+STATISTICS:: Annual Standard Deviation 0.14
+STATISTICS:: Annual Variance 0.019
+STATISTICS:: Information Ratio -0.733
+STATISTICS:: Tracking Error 0.27
+STATISTICS:: Treynor Ratio 8.97
+STATISTICS:: Total Fees $347.99
+STATISTICS:: Estimated Strategy Capacity $45000000.00
+STATISTICS:: Lowest Capacity Asset T 2T
+STATISTICS:: Fitness Score 0.016
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio -0.68
+STATISTICS:: Return Over Maximum Drawdown -0.446
+STATISTICS:: Portfolio Turnover 0.039
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 6484f07e6d682c5c767f2aaeeeb68da1
+20210814 21:31:45.757 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 21:31:45.758 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 21:31:45.759 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 21:31:45.759 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 21:31:45.760 TRACE:: Engine.Main(): Packet removed from queue: 
+fb455881-861a-4d2f-a794-c672c0bb7197
+20210814 21:31:45.761 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 21:31:45.761 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 21:31:45.762 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 21:31:45.768 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 21:31:45.770 TRACE:: Program.Main(): Exiting Lean...
+20210814 21:31:45.862 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+5423c8f6-5a88-46d9-bc0a-f021e5cd4901): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_05-19-02'
+
+#optimize for symbol PEP : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 15 15 1 MACD_Simple
+#Optimization of PEP failed, please review optimization criterias
+:44:32.636 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 21:44:32.637 TRACE::
+STATISTICS:: Total Trades 22
+STATISTICS:: Average Win 3.91%
+STATISTICS:: Average Loss -6.17%
+STATISTICS:: Compounding Annual Return 0.412%
+STATISTICS:: Drawdown 20.700%
+STATISTICS:: Expectancy 0.040
+STATISTICS:: Net Profit 0.826%
+STATISTICS:: Sharpe Ratio 0.138
+STATISTICS:: Probabilistic Sharpe Ratio 9.925%
+STATISTICS:: Loss Rate 36%
+STATISTICS:: Win Rate 64%
+STATISTICS:: Profit-Loss Ratio 0.63
+STATISTICS:: Alpha 0.027
+STATISTICS:: Beta 0.056
+STATISTICS:: Annual Standard Deviation 0.241
+STATISTICS:: Annual Variance 0.058
+STATISTICS:: Information Ratio -0.229
+STATISTICS:: Tracking Error 0.324
+STATISTICS:: Treynor Ratio 0.595
+STATISTICS:: Total Fees $434.82
+STATISTICS:: Estimated Strategy Capacity $55000000.00
+STATISTICS:: Lowest Capacity Asset NB R735QTJ8XC9X
+STATISTICS:: Fitness Score 0.019
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0.015
+STATISTICS:: Return Over Maximum Drawdown 0.019
+STATISTICS:: Portfolio Turnover 0.039
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 371a41d6ccf33c6e43fcd5e57c59f103
+20210814 21:44:32.637 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 21:44:32.638 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 21:44:32.638 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 21:44:32.639 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 21:44:32.640 TRACE:: Engine.Main(): Packet removed from queue: 
+026b1dd7-f294-49d3-bb46-a245aba1c475
+20210814 21:44:32.640 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 21:44:32.641 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 21:44:32.641 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 21:44:32.648 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 21:44:32.649 TRACE:: Program.Main(): Exiting Lean...
+20210814 21:44:32.735 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+a14230fb-8d14-4dfb-a61e-59ef5b668de5): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_05-31-50'
+
+#optimize for symbol PG : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 16 16 1 MACD_Simple
+#Optimization of PG failed, please review optimization criterias
+ 21:57:19.749 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 21:57:19.750 TRACE::
+STATISTICS:: Total Trades 24
+STATISTICS:: Average Win 8.04%
+STATISTICS:: Average Loss -3.87%
+STATISTICS:: Compounding Annual Return -0.572%
+STATISTICS:: Drawdown 22.300%
+STATISTICS:: Expectancy 0.027
+STATISTICS:: Net Profit -1.142%
+STATISTICS:: Sharpe Ratio 0.065
+STATISTICS:: Probabilistic Sharpe Ratio 8.186%
+STATISTICS:: Loss Rate 67%
+STATISTICS:: Win Rate 33%
+STATISTICS:: Profit-Loss Ratio 2.08
+STATISTICS:: Alpha 0.018
+STATISTICS:: Beta -0.06
+STATISTICS:: Annual Standard Deviation 0.185
+STATISTICS:: Annual Variance 0.034
+STATISTICS:: Information Ratio -0.314
+STATISTICS:: Tracking Error 0.305
+STATISTICS:: Treynor Ratio -0.201
+STATISTICS:: Total Fees $249.71
+STATISTICS:: Estimated Strategy Capacity $28000000.00
+STATISTICS:: Lowest Capacity Asset CSCO 2T
+STATISTICS:: Fitness Score 0.021
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio -0.027
+STATISTICS:: Return Over Maximum Drawdown -0.025
+STATISTICS:: Portfolio Turnover 0.042
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash bc3727e2203eb1f5046cb3d6f2b061be
+20210814 21:57:19.751 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 21:57:19.752 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 21:57:19.753 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 21:57:19.753 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 21:57:19.754 TRACE:: Engine.Main(): Packet removed from queue: 
+14245c24-ac84-47d4-8ea3-1a37559053cb
+20210814 21:57:19.754 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 21:57:19.755 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 21:57:19.755 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 21:57:19.762 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 21:57:19.764 TRACE:: Program.Main(): Exiting Lean...
+20210814 21:57:19.839 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+24ee971d-946f-4ab4-816e-82ea3bf8f03b): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_05-44-38'
+
+#optimize for symbol PINS : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 17 17 1 MACD_Simple
+#Optimization of PINS failed, please review optimization criterias
+814 22:10:03.146 TRACE:: Config.GetValue(): regression-update-statistics -
+Using default value: False
+20210814 22:10:03.147 TRACE::
+STATISTICS:: Total Trades 13
+STATISTICS:: Average Win 9.11%
+STATISTICS:: Average Loss -2.58%
+STATISTICS:: Compounding Annual Return 18.646%
+STATISTICS:: Drawdown 11.700%
+STATISTICS:: Expectancy 2.018
+STATISTICS:: Net Profit 40.835%
+STATISTICS:: Sharpe Ratio 1.187
+STATISTICS:: Probabilistic Sharpe Ratio 55.513%
+STATISTICS:: Loss Rate 33%
+STATISTICS:: Win Rate 67%
+STATISTICS:: Profit-Loss Ratio 3.53
+STATISTICS:: Alpha 0.186
+STATISTICS:: Beta -0.051
+STATISTICS:: Annual Standard Deviation 0.152
+STATISTICS:: Annual Variance 0.023
+STATISTICS:: Information Ratio 0.256
+STATISTICS:: Tracking Error 0.285
+STATISTICS:: Treynor Ratio -3.503
+STATISTICS:: Total Fees $168.99
+STATISTICS:: Estimated Strategy Capacity $48000000.00
+STATISTICS:: Lowest Capacity Asset KO 2T
+STATISTICS:: Fitness Score 0.016
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 1.314
+STATISTICS:: Return Over Maximum Drawdown 1.591
+STATISTICS:: Portfolio Turnover 0.023
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 0ca406a44aab1b234cb7ece4b5b57dea
+20210814 22:10:03.147 TRACE:: BacktestingResultHandler.SendAnalysisResult(): 
+Processed final packet
+20210814 22:10:03.148 TRACE:: Engine.Run(): Disconnecting from brokerage...
+20210814 22:10:03.149 TRACE:: Engine.Run(): Disposing of setup handler...
+20210814 22:10:03.149 TRACE:: Engine.Main(): Analysis Completed and Results 
+Posted.
+Engine.Main(): Analysis Complete.
+20210814 22:10:03.150 TRACE:: Engine.Main(): Packet removed from queue: 
+10343f63-e672-4505-a590-5aed91b6fadd
+20210814 22:10:03.150 TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+20210814 22:10:03.151 TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of 
+system handlers.
+20210814 22:10:03.151 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+20210814 22:10:03.157 TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed 
+of algorithm handlers.
+20210814 22:10:03.159 TRACE:: Program.Main(): Exiting Lean...
+20210814 22:10:03.240 TRACE:: LeanOptimizer.TriggerOnEndEvent(OID 
+5f80cae8-3d74-4140-bb8c-a6dfa14ffa56): Optimization has ended. Result was not 
+reached
+Successfully optimized 'MACD_Simple' and stored the output in 
+'MACD_Simple\optimizations\2021-08-15_05-57-24'
+
+#optimize for symbol PYPL : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 18 18 1 MACD_Simple
+self.indicators["PYPL"] = {"MACD": self.MACDIndicator(self, "PYPL", 12, 15, 5)} #Total Trades: 10, Compounding Annual Return: 83.526, Sharpe Ratio: 2.17
+#Elapsed optimize PYPL MACD iteration time : 0:12:42.132364
+#optimize for symbol T : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 19 19 1 MACD_Simple
+self.indicators["T"] = {"MACD": self.MACDIndicator(self, "T", 11, 15, 9)} #Total Trades: 6, Compounding Annual Return: 22.325, Sharpe Ratio: 1.601
+#Elapsed optimize T MACD iteration time : 0:12:45.127964
+#optimize for symbol TSLA : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 20 20 1 MACD_Simple
+self.indicators["TSLA"] = {"MACD": self.MACDIndicator(self, "TSLA", 8, 16, 5)} #Total Trades: 9, Compounding Annual Return: 23.22, Sharpe Ratio: 1.757
+#Elapsed optimize TSLA MACD iteration time : 0:12:49.218378
+#optimize for symbol UPS : lean optimize --strategy Grid Search --target Compounding Annual Return --target-direction max --constraint Sharpe Ratio >= 1.5 --parameter macd-param-index 0 394 1 --parameter symbol-index 21 21 1 MACD_Simple
+self.indicators["UPS"] = {"MACD": self.MACDIndicator(self, "UPS", 10, 13, 7)} #Total Trades: 6, Compounding Annual Return: 42.712, Sharpe Ratio: 1.972
+#Elapsed optimize UPS MACD iteration time : 0:12:46.023128
+Elapsed optimize total time : 4:42:08.314026
