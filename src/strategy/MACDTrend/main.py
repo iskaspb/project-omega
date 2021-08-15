@@ -14,22 +14,35 @@ from datetime import datetime
 class MACDTrend(QCAlgorithm):
     
     class MACDIndicator:
-        def __init__(self, strat, symbol, fast, slow, signal):
-            self.start = strat
-            self.tolerance = 0.0025
-            self.ind = strat.MACD(symbol, fast, slow, signal, MovingAverageType.Exponential, Resolution.Daily)
-        
+        def __init__(self, strategy, symbol : str, fast : int, slow : int, signal : int, interval : Resolution):
+            if fast >= slow:
+                raise Exception(f"MACD fast[{fast}] >= slow[{slow}]")
+            if signal >= fast:
+                raise Exception(f"MACD signal[{signal}] >= fast[{fast}]")
+            self.__tolerance = 0.0025
+            self.__impl = strategy.MACD(symbol, fast, slow, signal, MovingAverageType.Exponential, interval)
         @property
-        def IsReady(self):
-            return self.ind.IsReady
-    
-        def decide(self, data):
+        def IsReady(self) -> Boolean:
+            return self.__impl.IsReady
+        @property
+        def Current(self):
+            return self.__impl.Current
+        @property
+        def Slow(self):
+            return self.__impl.Slow
+        @property
+        def Fast(self):
+            return self.__impl.Fast
+        @property
+        def Signal(self):
+            return self.__impl.Signal
+        def decide(self) -> int:
             if not self.IsReady:
                 return 0
-            signal = (self.ind.Current.Value - self.ind.Signal.Current.Value)/self.ind.Fast.Current.Value
-            if signal > self.tolerance:
+            signal = (self.Current.Value - self.Signal.Current.Value)/self.Fast.Current.Value
+            if signal > self.__tolerance:
                 return 1
-            elif signal < -self.tolerance:
+            elif signal < -self.__tolerance:
                 return -1
             return 0
 
@@ -37,27 +50,24 @@ class MACDTrend(QCAlgorithm):
         value = self.GetParameter(name)
         return value if value else defaultValue
 
-    def Initialize(self):
+    def AddMACDIndicator(self, symbol : str, fast : int, slow : int, signal : int, interval : Resolution) -> None:
+        if symbol not in self.indicators:
+            self.AddEquity(symbol, interval)
+            self.stopMarketTicket[symbol] = None
+            self.indicators[symbol] = {}
+        symbolIndicators = self.indicators[symbol]
+        if "MACD" in symbolIndicators:
+            raise Exception(f"MACD is already registered for symbol {symbol}")
+        symbolIndicators["MACD"] = self.MACDIndicator(self, symbol, fast, slow, signal, interval)
+
+    def Initialize_Orig(self):
         self.SetStartDate(2019, 1, 1)
         self.SetEndDate(2021, 1, 1)
-        self.SetCash(100000)
-        self.indicators = {}
-        self.portfolioAllocation = {}
-        #...trailing stop loss
-        self.stopMarketTicket = {}
-        self.stopLossTolerance = 0.093
-        #...indicator signals
-        self.signals = {}
-        self.minSignalLevel = 1
-
         #Search symbols in https://www.quantconnect.com/data
-        self.AddEquity("SPY", Resolution.Daily)
-        #ORIG : self.symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]))
-        self.symbols = sorted(set(['AAPL', 'AMZN', 'BAC', 'GE', 'PYPL', 'UPS', 'TSLA']))
-
-        self.maxSymbolAllocatedCount = int(self.GetParamOrDefault("max-symbol-allocated-count", "3"))
-        if self.maxSymbolAllocatedCount < 1 or self.maxSymbolAllocatedCount > len(self.symbols):
-            raise Exception(f"Invalid max-symbol-allocated-count parameter value : {self.maxSymbolAllocatedCount}. Must be in the range[1, len(self.symbols)]")
+        symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]))
+        self.maxSymbolAllocatedCount = int(self.GetParamOrDefault("max-symbol-allocated-count", defaultValue="3"))
+        if self.maxSymbolAllocatedCount < 1 or self.maxSymbolAllocatedCount > len(symbols):
+            raise Exception(f"Invalid max-symbol-allocated-count parameter value : {self.maxSymbolAllocatedCount}. Must be in the range[1, len(symbols)]")
 
         '''
         self.Schedule.On(
@@ -66,24 +76,10 @@ class MACDTrend(QCAlgorithm):
             Action(self.AllocatePortfolio))
         '''
         
-        for symbol in self.symbols:
+        for symbol in symbols:
             self.AddEquity(symbol, Resolution.Daily)
-            #ORIG : self.indicators[symbol] = {"MACD": self.MACDIndicator(self, symbol, 7, 13, 3)}
+            self.indicators[symbol] = {"MACD": self.MACDIndicator(self, symbol, 7, 13, 3, Resolution.Daily)}
             self.stopMarketTicket[symbol] = None
-        self.indicators["AAPL"] = {"MACD": self.MACDIndicator(self, "AAPL", 10, 14, 7)} #Total Trades: 11, Compounding Annual Return: 265.239, Sharpe Ratio: 2.899
-        self.indicators["AMZN"] = {"MACD": self.MACDIndicator(self, "AMZN", 13, 15, 4)} #Total Trades: 5, Compounding Annual Return: 296.728, Sharpe Ratio: 5.514
-        self.indicators["BAC"] = {"MACD": self.MACDIndicator(self, "BAC", 9, 11, 3)} #Total Trades: 4, Compounding Annual Return: 73.923, Sharpe Ratio: 2.489
-        #self.indicators["CSCO"] = {"MACD": self.MACDIndicator(self, "CSCO", 6, 15, 4)} #Total Trades: 44, Compounding Annual Return: 55.613, Sharpe Ratio: 1.72
-        #self.indicators["F"] = {"MACD": self.MACDIndicator(self, "F", 8, 10, 3)} #Total Trades: 2, Compounding Annual Return: 31.223, Sharpe Ratio: 1.535
-        self.indicators["GE"] = {"MACD": self.MACDIndicator(self, "GE", 10, 12, 3)} #Total Trades: 3, Compounding Annual Return: 95.471, Sharpe Ratio: 2.236
-        #self.indicators["GOOG"] = {"MACD": self.MACDIndicator(self, "GOOG", 7, 12, 4)} #Total Trades: 15, Compounding Annual Return: 34.081, Sharpe Ratio: 1.703
-        #self.indicators["HP"] = {"MACD": self.MACDIndicator(self, "HP", 9, 12, 6)} #Total Trades: 5, Compounding Annual Return: 41.689, Sharpe Ratio: 1.82
-        self.indicators["PYPL"] = {"MACD": self.MACDIndicator(self, "PYPL", 12, 15, 5)} #Total Trades: 10, Compounding Annual Return: 83.526, Sharpe Ratio: 2.17
-        #self.indicators["T"] = {"MACD": self.MACDIndicator(self, "T", 11, 15, 9)} #Total Trades: 6, Compounding Annual Return: 22.325, Sharpe Ratio: 1.601
-        self.indicators["TSLA"] = {"MACD": self.MACDIndicator(self, "TSLA", 8, 16, 5)} #Total Trades: 9, Compounding Annual Return: 23.22, Sharpe Ratio: 1.757
-        self.indicators["UPS"] = {"MACD": self.MACDIndicator(self, "UPS", 10, 13, 7)} #Total Trades: 6, Compounding Annual Return: 42.712, Sharpe Ratio: 1.972
-
-        # ORIG : 
         ##########################################
         #BUY SPY only : T=1, 56.593%, B=-0.225, SH=1.035
         ##########################################
@@ -128,8 +124,70 @@ class MACDTrend(QCAlgorithm):
         #UPS : T=8 ,-11.039%, B=      , SR=
         #NVDA: T=12, 41.160%, B=      , SR=1.559
         #PYPL: T=6 ,-10.732%, B=      , SR=
-        
 
+    def Initialize_Opt_2019_2021(self):
+        self.SetStartDate(2019, 1, 1)
+        self.SetEndDate(2021, 1, 1)
+
+        interval = Resolution.Daily
+        self.AddMACDIndicator("AAPL", 10, 14, 7, interval) #Total Trades: 11, Compounding Annual Return: 265.239, Sharpe Ratio: 2.899
+        self.AddMACDIndicator("AMZN", 13, 15, 4, interval) #Total Trades: 5, Compounding Annual Return: 296.728, Sharpe Ratio: 5.514
+        self.AddMACDIndicator("BAC", 9, 11, 3, interval) #Total Trades: 4, Compounding Annual Return: 73.923, Sharpe Ratio: 2.489
+        #self.AddMACDIndicator("CSCO", 6, 15, 4, interval) #Total Trades: 44, Compounding Annual Return: 55.613, Sharpe Ratio: 1.72
+        #self.AddMACDIndicator("F", 8, 10, 3, interval) #Total Trades: 2, Compounding Annual Return: 31.223, Sharpe Ratio: 1.535
+        self.AddMACDIndicator("GE", 10, 12, 3, interval) #Total Trades: 3, Compounding Annual Return: 95.471, Sharpe Ratio: 2.236
+        #self.AddMACDIndicator("GOOG", 7, 12, 4, interval) #Total Trades: 15, Compounding Annual Return: 34.081, Sharpe Ratio: 1.703
+        #self.AddMACDIndicator("HP", 9, 12, 6, interval) #Total Trades: 5, Compounding Annual Return: 41.689, Sharpe Ratio: 1.82
+        self.AddMACDIndicator("PYPL", 12, 15, 5, interval) #Total Trades: 10, Compounding Annual Return: 83.526, Sharpe Ratio: 2.17
+        #self.AddMACDIndicator("T", 11, 15, 9, interval) #Total Trades: 6, Compounding Annual Return: 22.325, Sharpe Ratio: 1.601
+        self.AddMACDIndicator("TSLA", 8, 16, 5, interval) #Total Trades: 9, Compounding Annual Return: 23.22, Sharpe Ratio: 1.757
+        self.AddMACDIndicator("UPS", 10, 13, 7, interval) #Total Trades: 6, Compounding Annual Return: 42.712, Sharpe Ratio: 1.972
+
+        self.maxSymbolAllocatedCount = int(self.GetParamOrDefault("max-symbol-allocated-count", defaultValue="3"))
+        if self.maxSymbolAllocatedCount < 1 or self.maxSymbolAllocatedCount > len(self.indicators):
+            raise Exception(f"Invalid max-symbol-allocated-count parameter value : {self.maxSymbolAllocatedCount}. Must be in the range[1, len(self.indicators)]")
+
+    def Initialize_Opt_2016_2017(self):
+        self.SetStartDate(2016, 1, 1)
+        self.SetEndDate(2017, 1, 1)
+
+        interval = Resolution.Daily
+        self.AddMACDIndicator("AAPL", 7, 15, 5, interval) #Total Trades: 11, Compounding Annual Return: 40.248, Sharpe Ratio: 2.801
+        self.AddMACDIndicator("AMD", 11, 14, 8, interval) #Total Trades: 2, Compounding Annual Return: 55.964, Sharpe Ratio: 2.501
+        self.AddMACDIndicator("AMZN", 11, 26, 8, interval) #Total Trades: 11, Compounding Annual Return: 66.646, Sharpe Ratio: 2.928
+        self.AddMACDIndicator("BAC", 9, 11, 3, interval) #Total Trades: 1, Compounding Annual Return: 258.374, Sharpe Ratio: 6.693
+        self.AddMACDIndicator("CSCO", 11, 13, 4, interval) #Total Trades: 1, Compounding Annual Return: 95.573, Sharpe Ratio: 2.568
+        self.AddMACDIndicator("GE", 10, 12, 4, interval) #Total Trades: 3, Compounding Annual Return: 404.598, Sharpe Ratio: 7.106
+        self.AddMACDIndicator("GOOG", 12, 16, 9, interval) #Total Trades: 5, Compounding Annual Return: 48.918, Sharpe Ratio: 2.643
+        self.AddMACDIndicator("INTC", 8, 12, 6, interval) #Total Trades: 14, Compounding Annual Return: 77.774, Sharpe Ratio: 2.721
+        self.AddMACDIndicator("KO", 12, 27, 10, interval) #Total Trades: 5, Compounding Annual Return: 22.761, Sharpe Ratio: 2.2
+        self.AddMACDIndicator("NVDA", 8, 15, 6, interval) #Total Trades: 5, Compounding Annual Return: 31.906, Sharpe Ratio: 2.865
+        self.AddMACDIndicator("PEP", 13, 16, 8, interval) #Total Trades: 4, Compounding Annual Return: 87.065, Sharpe Ratio: 4.272
+        self.AddMACDIndicator("PG", 8, 20, 6, interval) #Total Trades: 9, Compounding Annual Return: 31.405, Sharpe Ratio: 2.337
+        self.AddMACDIndicator("UPS", 6, 11, 4, interval) #Total Trades: 2, Compounding Annual Return: 31.573, Sharpe Ratio: 2.775
+
+        self.maxSymbolAllocatedCount = int(self.GetParamOrDefault("max-symbol-allocated-count", defaultValue="3"))
+        if self.maxSymbolAllocatedCount < 1 or self.maxSymbolAllocatedCount > len(self.indicators):
+            raise Exception(f"Invalid max-symbol-allocated-count parameter value : {self.maxSymbolAllocatedCount}. Must be in the range[1, len(self.indicators)]")
+
+    def InitializeCommonParams(self):
+        self.SetCash(100000)
+        self.indicators = {}
+        self.portfolioAllocation = {}
+        #...trailing stop loss
+        self.stopMarketTicket = {}
+        self.stopLossTolerance = 0.093
+        #...indicator signals
+        self.signals = {}
+        self.minSignalLevel = 1
+        #...just in case add SPY
+        self.AddEquity("SPY", Resolution.Daily)
+
+    def Initialize(self):
+        self.InitializeCommonParams()
+        #self.Initialize_Opt_2016_2017()
+        self.Initialize_Opt_2019_2021()
+        #self.Initialize_Orig()
 
     def OnData(self, data):
         self.signals = {}
@@ -141,7 +199,7 @@ class MACDTrend(QCAlgorithm):
             for name, indicator in indicators.items():
                 if not indicator.IsReady:
                     continue
-                self.signals[symbol] = self.signals[symbol] + indicator.decide(data)
+                self.signals[symbol] = self.signals[symbol] + indicator.decide()
                 
         self.AllocatePortfolio()
 
@@ -242,18 +300,18 @@ class MACDTrend(QCAlgorithm):
         allocationTasks = []
         for symbol in self.portfolioAllocation:
             if symbol not in newPortfolioAllocation:
-                allocationTasks.append((symbol, 1.))
+                allocationTasks.append((symbol, 0.))
                 
         for symbol, amount in newPortfolioAllocation.items():
             if symbol not in self.portfolioAllocation:
-                if (symbol, 1.) in allocationTasks:
+                if (symbol, 0.) in allocationTasks:
                     raise Exception(f"Symbol {symbol} is already ordered for liquidation")
                 allocationTasks.append((symbol, amount))
 
         self.portfolioAllocation = newPortfolioAllocation
         for (symbol, amount) in allocationTasks:
             self.ClearStopLoss(symbol)
-            if amount == 1.:
+            if amount == 0.:
                 self.Liquidate(symbol)
             else:
                 self.SetHoldings(symbol, amount)
