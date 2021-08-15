@@ -52,7 +52,7 @@ class MACDTrend(QCAlgorithm):
         #self.symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]))
         #self.symbols = sorted(set(['AAPL', 'AMD', 'AMZN', 'BABA', 'BAC', 'CSCO', 'F', 'FB', 'GE', 'GOOG', 'HP', 'INTC', 'KO', 'MU', 'NVDA', 'PEP', 'PG', 'PINS', 'PYPL', 'T', 'TSLA', 'UPS', 'WMT']))
         #self.symbols = sorted(set(['AAPL', 'AMZN', 'BAC', 'CSCO', 'F', 'GE', 'GOOG', 'HP', 'PYPL', 'T', 'TSLA', 'UPS']))
-        self.symbols = sorted(set(['AAPL', 'AMZN', 'BAC', 'GE', 'PYPL', 'UPS']))
+        self.symbols = sorted(set(['AAPL', 'AMZN', 'BAC', 'GE', 'PYPL', 'UPS', 'TSLA']))
 
         self.maxSymbolAllocatedCount = int(self.GetParameter("max-symbol-allocated-count"))
         if self.maxSymbolAllocatedCount < 1 or self.maxSymbolAllocatedCount > len(self.symbols):
@@ -79,7 +79,7 @@ class MACDTrend(QCAlgorithm):
         #self.indicators["HP"] = {"MACD": self.MACDIndicator(self, "HP", 9, 12, 6)} #Total Trades: 5, Compounding Annual Return: 41.689, Sharpe Ratio: 1.82
         self.indicators["PYPL"] = {"MACD": self.MACDIndicator(self, "PYPL", 12, 15, 5)} #Total Trades: 10, Compounding Annual Return: 83.526, Sharpe Ratio: 2.17
         #self.indicators["T"] = {"MACD": self.MACDIndicator(self, "T", 11, 15, 9)} #Total Trades: 6, Compounding Annual Return: 22.325, Sharpe Ratio: 1.601
-        #self.indicators["TSLA"] = {"MACD": self.MACDIndicator(self, "TSLA", 8, 16, 5)} #Total Trades: 9, Compounding Annual Return: 23.22, Sharpe Ratio: 1.757
+        self.indicators["TSLA"] = {"MACD": self.MACDIndicator(self, "TSLA", 8, 16, 5)} #Total Trades: 9, Compounding Annual Return: 23.22, Sharpe Ratio: 1.757
         self.indicators["UPS"] = {"MACD": self.MACDIndicator(self, "UPS", 10, 13, 7)} #Total Trades: 6, Compounding Annual Return: 42.712, Sharpe Ratio: 1.972
         '''
         self.indicators['AAPL'] = {"MACD": self.MACDIndicator(self, 'AAPL', 10, 14, 7)} #Interest: 34.851
