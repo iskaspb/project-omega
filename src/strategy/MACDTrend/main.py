@@ -33,7 +33,10 @@ class MACDTrend(QCAlgorithm):
                 return -1
             return 0
 
-    
+    def GetParamOrDefault(self, name : str, defaultValue : str = None) -> str:
+        value = self.GetParameter(name)
+        return value if value else defaultValue
+
     def Initialize(self):
         self.SetStartDate(2019, 1, 1)
         self.SetEndDate(2021, 1, 1)
@@ -52,7 +55,7 @@ class MACDTrend(QCAlgorithm):
         #ORIG : self.symbols = sorted(set(["AAPL", "BABA", "TSLA", "INTC", "NVDA", "MU"]))
         self.symbols = sorted(set(['AAPL', 'AMZN', 'BAC', 'GE', 'PYPL', 'UPS', 'TSLA']))
 
-        self.maxSymbolAllocatedCount = int(self.GetParameter("max-symbol-allocated-count"))
+        self.maxSymbolAllocatedCount = int(self.GetParamOrDefault("max-symbol-allocated-count", "3"))
         if self.maxSymbolAllocatedCount < 1 or self.maxSymbolAllocatedCount > len(self.symbols):
             raise Exception(f"Invalid max-symbol-allocated-count parameter value : {self.maxSymbolAllocatedCount}. Must be in the range[1, len(self.symbols)]")
 
