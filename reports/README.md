@@ -1,4 +1,8 @@
-# List of backtest reports
+# Reports and documents for the Project Omega
+## Final deliverables
+1. Project report : 
+
+## List of backtest reports
 
 1. MACDTrend short term trading strategy : 2 years, 2019.1.1-2021.1.1, modified MACD (7, 13, 3) selection of 3 best symbol out of [AAPL,BABA,TSLA,INTC,NVDA,MU] with trailing stop loss : [01-short-term-trading-strategy-MACDTrend.pdf](https://github.com/iskaspb/project-omega/blob/master/reports/01-short-term-trading-strategy-MACDTrend.pdf)
 1. MACDTrend short term trading strategy : 6 years, 2015.1.1-2021.1.1, modified MACD (7, 13, 3) selection of 3 best symbol out of [AAPL,BABA,TSLA,INTC,NVDA,MU] with trailing stop loss : [02-short-term-trading-strategy-MACDTrend.pdf](https://github.com/iskaspb/project-omega/blob/master/reports/02-short-term-trading-strategy-MACDTrend.pdf)
