@@ -1,6 +1,7 @@
 # Reports and documents for the Project Omega
 ## Final deliverables
 1. Project report : [Report_Project_Omega.docx](https://github.com/iskaspb/project-omega/blob/master/reports/Report_Project_Omega.docx)
+2. Project presentation : [QuantConnectAlphaStrategy.pptx](https://github.com/iskaspb/project-omega/blob/master/reports/QuantConnectAlphaStrategy.pptx)
 
 ## List of backtest reports
 
