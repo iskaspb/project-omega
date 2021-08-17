@@ -1,6 +1,6 @@
 # Reports and documents for the Project Omega
 ## Final deliverables
-1. Project report : 
+1. Project report : [Report_Project_Omega.docx](https://github.com/iskaspb/project-omega/blob/master/reports/Report_Project_Omega.docx)
 
 ## List of backtest reports
 
