@@ -21,7 +21,7 @@ This project is greatly influenced by the algo-trading course given by [Shahank 
 ## Collaboration and reporting
 * [Time tracking](https://docs.google.com/spreadsheets/d/1goY3e8Pnb7GCFPjv1ocY3dTM-CobUiLo0siKtb2_tVs/edit?usp=sharing)
 * [Meeting Minutes](https://docs.google.com/document/d/1ZUnK5dsIOngHRSNgRD8AuZrsVoigCyxFhxJIKpwJvKw/edit?usp=sharing)
-* [Project report](https://docs.google.com/document/d/1xA0bhG-hIhc7HJPNiOUzs8L8Qvx9Ujgg2xYSss_QrJU/edit)
+* [Project report](https://github.com/iskaspb/project-omega/blob/master/reports/Report_Project_Omega.docx)
 * [Canban project board](https://github.com/iskaspb/project-omega/projects/1)
 
 ### Setting up local env
