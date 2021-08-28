@@ -12,7 +12,7 @@ This project is greatly influenced by the algo-trading course given by [Shahank 
 1. Don Yam
 
 ## Members
-1. Antony Christopher Cherian Paul
+1. [Antony Christopher Cherian Paul](https://www.linkedin.com/in/antony-cherian-cfa-fcca-445971/)
 1. Lim Hong Wen (Team Lead)
 1. Ngan Kwok Leong
 1. [Tkachenko Alexey](https://www.linkedin.com/in/tkachenkoalexey/) (Tech Lead)
